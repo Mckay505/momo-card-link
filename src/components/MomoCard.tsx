@@ -233,6 +233,27 @@ export const MomoCard = () => {
           </TabsContent>
         </Tabs>
       </div>
+      
+      {/* Footer */}
+      <div className="mt-8 py-6 border-t border-border bg-muted/30">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-lg font-semibold text-muted-foreground mb-4">
+            Brought to you by MTN Mobile Money!
+          </p>
+          <div className="flex justify-center items-center gap-6 flex-wrap">
+            <img 
+              src="/lovable-uploads/324b89c8-3e89-4c9f-aaa1-ef0f3ad713b9.png" 
+              alt="MTN Mobile Money Service" 
+              className="h-16 w-16 object-contain"
+            />
+            <img 
+              src="/lovable-uploads/d73a67df-1742-43a4-84a0-a5ee9503f510.png" 
+              alt="MTN Business Solutions" 
+              className="h-20 object-contain rounded-md"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
