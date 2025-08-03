@@ -8,9 +8,11 @@ import { toast } from "sonner";
 import { CreditCard, Smartphone, Wifi } from "lucide-react";
 
 const MTNLogo = () => (
-  <div className="h-10 w-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg">
-    MTN
-  </div>
+  <img 
+    src="/lovable-uploads/f7fdda2d-9920-4ac8-86ad-219b0bc3512f.png" 
+    alt="MTN Logo" 
+    className="h-10 w-10 object-contain"
+  />
 );
 
 interface CardData {
