@@ -6,7 +6,12 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { CreditCard, Smartphone, Wifi } from "lucide-react";
-import mtnLogo from "@/assets/mtn-logo.png";
+
+const MTNLogo = () => (
+  <div className="h-10 w-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg">
+    MTN
+  </div>
+);
 
 interface CardData {
   cardNumber: string;
@@ -62,7 +67,7 @@ export const MomoCard = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="bg-primary text-primary-foreground p-4 flex items-center gap-3">
-        <img src={mtnLogo} alt="MTN Logo" className="h-10 w-10" />
+        <MTNLogo />
         <div>
           <h1 className="text-2xl font-bold">MoMo Card</h1>
           <p className="text-sm opacity-90">Link your card to MTN Mobile Money</p>
